@@ -1,4 +1,3 @@
-/** First Wollok example */
 import wollok.game.*
 
 object lionel {
@@ -17,6 +16,24 @@ object lionel {
 		position = game.at((game.width() - 1).min(position.x() + 1), position.y()) 
 	}
 	
+	method patear() {
+		const x = pelota.position().x()+3
+		const y = pelota.position().y()
+		self.validacionPatear()
+		pelota.position(game.at(x.min(game.width()-1), y))
+			
+			
+			//game.at((pelota.position().x()) +3.min(game.width()-1),pelota.position().y())
+	}	
+
+	method validacionPatear(){
+		if(!self.estaEncimaDe(pelota)){
+			self.error("leo no tiene la pelota")
+		}
+	}
+	method estaEncimaDe(objeto){
+		return self.position()==objeto.position()
+	}
 }
 
 
