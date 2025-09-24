@@ -23,4 +23,20 @@ object lionel {
 object pelota {
 	const property image="pelota.png"
 	var property position = game.at(5,5)	
+
+	method levantarla() {
+		self.validarMismaPosicionConLionel()
+		position = self.position().up(1)
+		game.schedule(2000, { position = self.position().down(1)})
+	}
+
+	method validarMismaPosicionConLionel() {
+		if (not self.estaEnLaMismaPosicionQueLionel()) {
+			self.error("La pelota no está en la misma posición que lionel.")
+		}
+	}
+
+	method estaEnLaMismaPosicionQueLionel() {
+		return position == lionel.position()
+	}
 }
