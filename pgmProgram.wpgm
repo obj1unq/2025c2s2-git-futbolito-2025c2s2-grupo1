@@ -13,7 +13,7 @@ program futbolito{
 	keyboard.right().onPressDo({lionel.avanzar()})
 	keyboard.c().onPressDo({lionel.cambiarCamiseta()})
 	keyboard.p().onPressDo({lionel.patear()})
+	keyboard.t().onPressDo({lionel.taquito()})
+	
 	game.start()
-
-
 }
