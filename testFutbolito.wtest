@@ -1,0 +1,52 @@
+import objetos.*
+import wollok.game.*
+
+
+describe "Test de Futbolito" {
+
+    method initialize() {
+      game.width(15)
+	    game.height(10)
+    }
+  
+    test "Al patear la pelota se desplaza 3 posiciones a la derecha si hay espacio" {
+      lionel.avanzar()
+      lionel.avanzar()
+      lionel.patear()
+
+      assert.equals(game.at(8, 5), pelota.position())
+    }
+
+    test "Si Lionel no posee la pelota, entonces no puede patear" {
+      
+      assert.throwsException({ lionel.patear() })
+    }
+
+    test "Si Lionel esta sobre el borde izquierdo puede cambiar de camiseta" {
+      lionel.retroceder()
+      lionel.retroceder()
+      lionel.retroceder()
+      lionel.cambiarCamiseta()
+      
+      assert.equals(suplente, lionel.camisetaActual())
+    }
+
+    test "Si Lionel no esta sobre el borde izquierdo no puede cambiar de camiseta" {
+      
+      assert.throwsException({ lionel.cambiarCamiseta() })
+    }
+
+    test "Al dar un pase atras la pelota se mueve dos posiciones hacia izquierda si hay espacio" {
+      lionel.avanzar()
+      lionel.avanzar()
+      lionel.taquito()
+
+      assert.equals(game.at(2,5), pelota.position())
+    }
+
+    test "Si Lionel no posee la pelota, entonces no puede hacer taquito" {
+      
+      assert.throwsException({ lionel.taquito() })
+    }
+}
+ 
